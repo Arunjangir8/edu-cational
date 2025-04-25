@@ -48,19 +48,19 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 bg-cover bg-center px-4 py-8 bg-[#FAF1E6]">
+    <div className="min-h-screen grid lg:grid-cols-2 bg-cover bg-center px-4 py-8 bg-[#FFFFFF]">
       <div></div>
       <div className="flex justify-center items-center">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-md md:max-w-xl lg:max-w-2xl px-6 sm:px-12 py-10">
         <div className="flex mb-8">
           <div
-            className={`flex-1 text-center py-2 cursor-pointer font-semibold text-lg ${isLogin ? "border-b-2 border-[#99BC85] text-[#99BC85]" : "text-gray-500"}`}
+            className={`flex-1 text-center py-2 cursor-pointer font-semibold text-lg ${isLogin ? "border-b-2 border-[#A594F9] text-[#A594F9]" : "text-gray-500"}`}
             onClick={() => setIsLogin(true)}
           >
             LOGIN
           </div>
           <div
-            className={`flex-1 text-center py-2 cursor-pointer font-semibold text-lg ${!isLogin ? "border-b-2 border-[#99BC85] text-[#99BC85]" : "text-gray-500"}`}
+            className={`flex-1 text-center py-2 cursor-pointer font-semibold text-lg ${!isLogin ? "border-b-2 border-[#A594F9] text-[#A594F9]" : "text-gray-500"}`}
             onClick={() => setIsLogin(false)}
           >
             REGISTER
@@ -78,7 +78,7 @@ const Login = () => {
                 type="email"
                 id="loginEmail"
                 required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99BC85]"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A594F9]"
                 onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
               />
             </div>
@@ -88,14 +88,14 @@ const Login = () => {
                 type="password"
                 id="loginPassword"
                 required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99BC85]"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A594F9]"
                 onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
               />
             </div>
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-3 rounded-lg font-semibold transition ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#99BC85] hover:bg-[#bdd7ad] text-white'}`}
+              className={`w-full py-3 rounded-lg font-semibold transition ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#A594F9] hover:bg-[#CDC1FF] text-white'}`}
             >
               {isLoading ? (
                 <div className="flex justify-center items-center space-x-2">
@@ -109,7 +109,7 @@ const Login = () => {
             </button>
             <p className="text-center text-sm text-gray-600">
               Don’t have an account?{" "}
-              <span className="text-[#99BC85]  font-medium cursor-pointer underline" onClick={switchForm}>
+              <span className="text-[#A594F9] font-medium cursor-pointer underline" onClick={switchForm}>
                 Register
               </span>
             </p>
@@ -123,7 +123,7 @@ const Login = () => {
                 type="text"
                 id="name"
                 required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99BC85]"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A594F9]"
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
             </div>
@@ -133,7 +133,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#be5959]"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#CDC1FF]"
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
@@ -143,14 +143,14 @@ const Login = () => {
                 type="password"
                 id="password"
                 required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99BC85]"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A594F9]"
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-3 rounded-lg font-semibold transition ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#99BC85] hover:bg-[#bdd7ad] text-white'}`}
+              className={`w-full py-3 rounded-lg font-semibold transition ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#A594F9] hover:bg-[#CDC1FF] text-white'}`}
             >
               {isLoading ? (
                 <div className="flex justify-center items-center space-x-2">
@@ -164,7 +164,7 @@ const Login = () => {
             </button>
             <p className="text-center text-sm text-gray-600">
               Already have an account?{" "}
-              <span className="text-[#99BC85] font-medium cursor-pointer underline" onClick={switchForm}>
+              <span className="text-[#A594F9] font-medium cursor-pointer underline" onClick={switchForm}>
                 Login
               </span>
             </p>
