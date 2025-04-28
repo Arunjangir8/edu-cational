@@ -116,50 +116,7 @@ function ExplorePage() {
       </div>
       
       {/* Animation Styles */}
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes fade-down {
-          from { opacity: 0; transform: translateY(-20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fade-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.8; }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out forwards;
-        }
-        
-        .animate-fade-down {
-          animation: fade-down 0.5s ease-out forwards;
-        }
-        
-        .animate-fade-up {
-          animation: fade-up 0.5s ease-out forwards;
-        }
-        
-        .animate-pulse-slow {
-          animation: pulse-slow 3s infinite;
-        }
-        
-        .line-clamp-1 {
-          overflow: hidden;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 1;
-        }
-      `}</style>
+  
     </div>
   )
 }
