@@ -109,7 +109,7 @@ function ExplorePage() {
                   </div>
                   <span className="bg-[#CDC1FF] text-white px-3 py-1 rounded-full text-sm font-medium">Trending</span>
                 </div>
-                <h2 className="text-xl font-bold text-[#A594F9] mb-2">Progress Tracker</h2>
+                <h2 className="text-xl font-bold text-[#A594F9] mb-2">Profile</h2>
                 <p className="text-gray-700 mb-4">Track your reading habits, set goals, and monitor your achievements.</p>
                 <div className="flex justify-between items-center text-sm text-gray-600 mb-4">
                   <span className="flex items-center"><Calendar size={16} className="mr-1" /> Daily Stats</span>

@@ -52,7 +52,7 @@ function Navbar() {
                 <div className="absolute top-0 right-0 pt-12 hidden group-hover:block z-20">
                   <div className="bg-white rounded-lg shadow-lg p-3 w-40">
                     <p onClick={() => navigate("/my-profile")} className="dropdown-item text-[#374151] hover:text-[#A594F9] p-2">My Profile</p>
-                    <p onClick={() => navigate("/Progress")} className="dropdown-item text-[#374151] hover:text-[#A594F9] p-2">Progress</p>
+                    
                     <div className=" border-t border-gray-200 "></div>
                     <p onClick={handleLogout} className="p-2 dropdown-item text-[#A594F9] hover:text-red-400">Logout</p>
                   </div>
@@ -85,7 +85,7 @@ function Navbar() {
           {token ? (
             <>
               <p onClick={() => navigate("/my-profile")} className="dropdown-item text-[#374151] hover:text-[#A594F9] m-1 py-2">My Profile</p>
-              <p onClick={() => navigate("/Progress")} className="dropdown-item text-[#374151] hover:text-[#A594F9] m-1 py-2">Progress</p>
+              
               <button onClick={handleLogout} className="block m-1 py-2 text-[#A594F9]">Logout</button>
             </>
           ) : (
