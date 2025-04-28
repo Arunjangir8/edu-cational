@@ -42,7 +42,7 @@ function Navbar() {
           <div className="text-xl text-[#A594F9]">LOGO</div>
           <div className='hidden lg:flex lg:justify-around lg:items-center lg:w-[40vw]'>
             <a onClick={() => setIsOpen(!isOpen)} href="/" className="nav-link text-[#374151] hover:text-[#A594F9]">Home</a>
-            <a onClick={() => setIsOpen(!isOpen)} href="/Explore" className="nav-link text-[#374151] hover:text-[#A594F9]">Explore</a>
+  
             <a onClick={() => setIsOpen(!isOpen)} href="/Books" className="nav-link text-[#374151] hover:text-[#A594F9]">Books & PDFs</a>
             <a onClick={() => setIsOpen(!isOpen)} href="/AI" className="nav-link text-[#374151] hover:text-[#A594F9]">AI Assistant</a>
             {token ? (
@@ -79,7 +79,7 @@ function Navbar() {
       {isOpen && (
         <div className="lg:hidden bg-[#F5EFFF] px-4 py-2 absolute top-[50px] w-full z-40 shadow-md">
           <a href="/" className="block py-2 text-[#374151] hover:text-[#A594F9] m-1">Home</a>
-          <a href="/Explore" className="block py-2 text-[#374151] hover:text-[#A594F9] m-1">Explore</a>
+         
           <a href="/Books" className="block py-2 text-[#374151] hover:text-[#A594F9] m-1">Books & PDFs</a>
           <a href="/AI" className="block py-2 text-[#374151] hover:text-[#A594F9] m-1">AI Assistant</a>
           {token ? (

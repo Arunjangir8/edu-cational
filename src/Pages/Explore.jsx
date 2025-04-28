@@ -4,6 +4,7 @@ import {
   Calendar, BookOpen, Award,  Star
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 function ExplorePage() {
   const [activeTab, setActiveTab] = useState('discover');
@@ -13,7 +14,6 @@ function ExplorePage() {
     { id: 'discover', name: 'Discover', icon: <Compass size={20} /> },
     { id: 'library', name: 'Library', icon: <Book size={20} /> },
     { id: 'chat', name: 'Chatbot', icon: <MessageSquare size={20} /> },
-    { id: 'progress', name: 'Progress', icon: <BarChart2 size={20} /> },
     { id: 'profile', name: 'Profile', icon: <User size={20} /> }
   ];
 
@@ -26,16 +26,7 @@ function ExplorePage() {
             Explore Your Digital World
           </h1>
           
-          <div className="relative max-w-2xl mx-auto">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search size={20} className="text-gray-400" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search books, topics, or chat history..."
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#E5D9F2] focus:ring-2 focus:ring-[#CDC1FF] focus:border-transparent outline-none shadow-md transition-all duration-300"
-            />
-          </div>
+         
           
           {/* Navigation Tabs */}
           <nav className="mt-8">
@@ -115,7 +106,7 @@ function ExplorePage() {
                   <span className="flex items-center"><Calendar size={16} className="mr-1" /> Daily Stats</span>
                   <span className="flex items-center"><Award size={16} className="mr-1" /> Personal Goals</span>
                 </div>
-                <button onClick={()=> navigator("/Progress")} className="w-full bg-white text-[#A594F9] font-medium py-2 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+                <button onClick={()=> navigator("/my-profile")} className="w-full bg-white text-[#A594F9] font-medium py-2 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
                   View Progress
                 </button>
               </div>

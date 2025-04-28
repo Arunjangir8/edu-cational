@@ -1,15 +1,15 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import { Login } from './Pages/Login'
-import Home from './Pages/Home'
 import ProtectedRoute from './ProtectedRoute'
 import Navbar from './components/Navbar'
 import Myprofile from './Pages/Myprofile'
-import ExplorePage from './Pages/Explore'
+import HomePage from './Pages/Explore'
 import DigitalLibrary from './components/DigitalLibrary'
 import Ai from './Pages/Ai'
 import BookViewer from './components/BookViewer'
 import Progress from './Pages/Progress'
+import Footer from './components/Footer'
 
 function App() {
   
@@ -19,23 +19,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='/' element={<Home />} />
+        <Route path='*' element={<><HomePage /> <Footer/></>} />
         <Route
           path='/my-profile'
           element={
             <ProtectedRoute>
               <Myprofile />
+              <Footer/>
             </ProtectedRoute>
           }
         />
-        <Route
-          path='/Explore'
-          element={
-            <ProtectedRoute>
-              <ExplorePage />
-            </ProtectedRoute>
-          }
-        />
+        
         <Route
           path='/AI'
           element={
@@ -49,6 +43,7 @@ function App() {
           element={
             <ProtectedRoute>
               <DigitalLibrary/>
+              <Footer/>
             </ProtectedRoute>
           }
         />
@@ -57,14 +52,6 @@ function App() {
           element={
             <ProtectedRoute>
               <BookViewer/>
-            </ProtectedRoute>
-          }
-        />
-         <Route
-          path='/Progress'
-          element={
-            <ProtectedRoute>
-              <Progress/>
             </ProtectedRoute>
           }
         />

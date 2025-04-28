@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getUserProfile, updateUserProfile } from '../api.js';
+import Loader from '../components/Loader.jsx';
 
 function Myprofile() {
   const [userdata, setUserdata] = useState(null);
@@ -31,10 +32,10 @@ function Myprofile() {
     }
   };
 
-  if (!userdata) return <p className="text-center mt-20">Loading...</p>;
+  if (!userdata) return <Loader/>;
 
   return (
-    <div className='pt-32  max-w-lg w-full flex flex-col gap-2 text-sm mx-auto h-auto lg:h-[90vh] px-4 lg:scale-[1.2]'>
+    <div className='pt-32  max-w-lg w-full flex flex-col gap-2 text-sm mx-auto h-[100vh] lg:h-[100vh] px-4 lg:scale-[1.2]'>
       <img className='w-36 rounded self-center' src={"https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww"} alt="profile" />
 
       {
