@@ -22,7 +22,9 @@ function BookViewer() {
         if (data.results && data.results.length > 0) {
           const book = data.results[0]
           const htmlLink = book.formats["text/html"];
+          console.log(htmlLink)
           const secureHtmlLink = htmlLink ? htmlLink.replace("http://", "https://") : ""
+          console.log(secureHtmlLink)
 
           setHtmlUrl(secureHtmlLink)
           setPdfUrl(book.formats["application/pdf"] || "")
@@ -140,57 +142,57 @@ function BookViewer() {
           )}
         </div>
       </div>
+      <style>{`
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
+  @keyframes fade-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-        @keyframes fade-down {
-          from { opacity: 0; transform: translateY(-20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-        @keyframes fade-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
 
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
-        }
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
 
-        @keyframes pulse-subtle {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
 
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out;
-        }
+  .animate-fade-down {
+    animation: fade-down 0.5s ease-out;
+  }
 
-        .animate-fade-down {
-          animation: fade-down 0.5s ease-out;
-        }
+  .animate-fade-up {
+    animation: fade-up 0.5s ease-out;
+  }
 
-        .animate-fade-up {
-          animation: fade-up 0.5s ease-out;
-        }
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s infinite ease-in-out;
+  }
 
-        .animate-bounce-subtle {
-          animation: bounce-subtle 2s infinite ease-in-out;
-        }
+  .animate-pulse {
+    animation: pulse-subtle 2s infinite ease-in-out;
+  }
 
-        .animate-pulse {
-          animation: pulse-subtle 2s infinite ease-in-out;
-        }
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s infinite ease-in-out;
+  }
+`}</style>
 
-        .animate-pulse-subtle {
-          animation: pulse-subtle 2s infinite ease-in-out;
-        }
-      `}</style>
     </div>
   )
 }
