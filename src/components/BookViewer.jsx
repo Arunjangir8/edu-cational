@@ -14,71 +14,64 @@ function BookViewer() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setLoading(true);
-
-    fetch(`https://gutendex.com/books/?ids=${id}`)
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchBook = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`https://gutendex.com/books/?ids=${id}`);
+        const data = await res.json();
+  
         if (data.results && data.results.length > 0) {
           const book = data.results[0];
-
-          // Try different HTML format keys
           const possibleHtmlFormats = [
             "text/html",
             "text/html; charset=utf-8",
             "text/html; charset=iso-8859-1",
             "text/html; charset=us-ascii",
           ];
-
+  
           let rawHtmlUrl = "";
-
+  
           for (const format of possibleHtmlFormats) {
             if (book.formats[format]) {
               rawHtmlUrl = book.formats[format];
               break;
             }
           }
-
+  
           // Now replace http with https
           const fixedHtmlUrl = rawHtmlUrl ? rawHtmlUrl.replace("http://", "https://") : "";
-
+  
           setHtmlUrl(fixedHtmlUrl);
           setPdfUrl(book.formats["application/pdf"] || "");
           setBookTitle(book.title || "Book");
-
+  
           if (!fixedHtmlUrl) {
             setLoading(false);
           }
         } else {
           setError(true);
           setLoading(false);
-          if (htmlUrl) {
-            setTimeout(() => {
-              window.location.href = htmlUrl;  // External redirection to rawHtmlUrl
-            }, 100);  // Delay the redirect to show the error message
-          }
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching book:", error);
         setError(true);
         setLoading(false);
-
-        // Redirect to rawHtmlUrl if available after a delay
-        if (htmlUrl) {
-          setTimeout(() => {
-            window.location.href = htmlUrl;  // External redirection to rawHtmlUrl
-          }, 100);  // Delay the redirect to show the error message
-        }
-      });
-  }, [id, htmlUrl]); // Add htmlUrl as dependency to handle redirect logic
-
+         
+      }
+    };
+  
+    fetchBook();
+  }, [id, htmlUrl]);
+  
   const handleIframeLoad = () => {
     setLoading(false);
   }
 
   const handleBack = () => {
     navigate(-1);
+  }
+  if (error){
+    window.location.href = htmlUrl;
   }
 
   return (
