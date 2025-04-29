@@ -52,6 +52,11 @@ function BookViewer() {
         } else {
           setError(true);
           setLoading(false);
+          if (htmlUrl) {
+            setTimeout(() => {
+              window.location.href = htmlUrl;  // External redirection to rawHtmlUrl
+            }, 100);  // Delay the redirect to show the error message
+          }
         }
       })
       .catch((error) => {
@@ -63,7 +68,7 @@ function BookViewer() {
         if (htmlUrl) {
           setTimeout(() => {
             window.location.href = htmlUrl;  // External redirection to rawHtmlUrl
-          }, 2000);  // Delay the redirect to show the error message
+          }, 100);  // Delay the redirect to show the error message
         }
       });
   }, [id, htmlUrl]); // Add htmlUrl as dependency to handle redirect logic
