@@ -14,36 +14,36 @@ function BookViewer() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setLoading(true)
-
+    setLoading(true);
+  
     fetch(`https://gutendex.com/books/?ids=${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.results && data.results.length > 0) {
-          const book = data.results[0]
-          const htmlLink = book.formats["text/html"];
-          console.log(htmlLink)
-          const secureHtmlLink = htmlLink ? htmlLink.replace("http://", "https://") : ""
-          console.log(secureHtmlLink)
-
-          setHtmlUrl(secureHtmlLink)
-          const main = book.formats["application/pdf"]
-          const mainlink = main ? main.replace("http://", "https://") : ""
-          setPdfUrl(mainlink)
-          setBookTitle(book.title || "Book")
-
-          if (!secureHtmlLink) setLoading(false)
+          const book = data.results[0];
+  
+          const rawHtmlUrl = book.formats["text/html"];
+          const fixedHtmlUrl = rawHtmlUrl ? rawHtmlUrl.replace("http://", "https://") : "";
+  
+          setHtmlUrl(fixedHtmlUrl);
+          setPdfUrl(book.formats["application/pdf"] || "");
+          setBookTitle(book.title || "Book");
+  
+          if (!fixedHtmlUrl) {
+            setLoading(false);
+          }
         } else {
-          setError(true)
-          setLoading(false)
+          setError(true);
+          setLoading(false);
         }
       })
       .catch((error) => {
-        console.error("Error fetching book:", error)
-        setError(true)
-        setLoading(false)
-      })
-  }, [id])
+        console.error("Error fetching book:", error);
+        setError(true);
+        setLoading(false);
+      });
+  }, [id]);
+  
 
   const handleIframeLoad = () => {
     setLoading(false)
