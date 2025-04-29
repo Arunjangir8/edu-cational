@@ -22,7 +22,24 @@ function BookViewer() {
         if (data.results && data.results.length > 0) {
           const book = data.results[0];
   
-          const rawHtmlUrl = book.formats["text/html"];
+          // Try different HTML format keys
+          const possibleHtmlFormats = [
+            "text/html",
+            "text/html; charset=utf-8",
+            "text/html; charset=iso-8859-1",
+            "text/html; charset=us-ascii",
+          ];
+  
+          let rawHtmlUrl = "";
+  
+          for (const format of possibleHtmlFormats) {
+            if (book.formats[format]) {
+              rawHtmlUrl = book.formats[format];
+              break;
+            }
+          }
+  
+          // Now replace http with https
           const fixedHtmlUrl = rawHtmlUrl ? rawHtmlUrl.replace("http://", "https://") : "";
   
           setHtmlUrl(fixedHtmlUrl);
@@ -43,6 +60,7 @@ function BookViewer() {
         setLoading(false);
       });
   }, [id]);
+  
   
 
   const handleIframeLoad = () => {
