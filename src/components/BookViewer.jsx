@@ -15,13 +15,13 @@ function BookViewer() {
 
   useEffect(() => {
     setLoading(true);
-  
+
     fetch(`https://gutendex.com/books/?ids=${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.results && data.results.length > 0) {
           const book = data.results[0];
-  
+
           // Try different HTML format keys
           const possibleHtmlFormats = [
             "text/html",
@@ -29,24 +29,23 @@ function BookViewer() {
             "text/html; charset=iso-8859-1",
             "text/html; charset=us-ascii",
           ];
-  
+
           let rawHtmlUrl = "";
-  
+
           for (const format of possibleHtmlFormats) {
             if (book.formats[format]) {
               rawHtmlUrl = book.formats[format];
               break;
             }
           }
-  
+
           // Now replace http with https
           const fixedHtmlUrl = rawHtmlUrl ? rawHtmlUrl.replace("http://", "https://") : "";
 
-  
           setHtmlUrl(fixedHtmlUrl);
           setPdfUrl(book.formats["application/pdf"] || "");
           setBookTitle(book.title || "Book");
-  
+
           if (!fixedHtmlUrl) {
             setLoading(false);
           }
@@ -59,17 +58,22 @@ function BookViewer() {
         console.error("Error fetching book:", error);
         setError(true);
         setLoading(false);
+
+        // Redirect to rawHtmlUrl if available after a delay
+        if (htmlUrl) {
+          setTimeout(() => {
+            window.location.href = htmlUrl;  // External redirection to rawHtmlUrl
+          }, 2000);  // Delay the redirect to show the error message
+        }
       });
-  }, [id]);
-  
-  
+  }, [id, htmlUrl]); // Add htmlUrl as dependency to handle redirect logic
 
   const handleIframeLoad = () => {
-    setLoading(false)
+    setLoading(false);
   }
 
   const handleBack = () => {
-    navigate(-1)
+    navigate(-1);
   }
 
   return (
@@ -163,57 +167,57 @@ function BookViewer() {
           )}
         </div>
       </div>
+
       <style>{`
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
 
-  @keyframes fade-down {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        @keyframes fade-down {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        @keyframes fade-up {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-  @keyframes bounce-subtle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-  }
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-3px); }
+        }
 
-  @keyframes pulse-subtle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
+        @keyframes pulse-subtle {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
 
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out;
-  }
+        .animate-fade-in {
+          animation: fade-in 0.5s ease-out;
+        }
 
-  .animate-fade-down {
-    animation: fade-down 0.5s ease-out;
-  }
+        .animate-fade-down {
+          animation: fade-down 0.5s ease-out;
+        }
 
-  .animate-fade-up {
-    animation: fade-up 0.5s ease-out;
-  }
+        .animate-fade-up {
+          animation: fade-up 0.5s ease-out;
+        }
 
-  .animate-bounce-subtle {
-    animation: bounce-subtle 2s infinite ease-in-out;
-  }
+        .animate-bounce-subtle {
+          animation: bounce-subtle 2s infinite ease-in-out;
+        }
 
-  .animate-pulse {
-    animation: pulse-subtle 2s infinite ease-in-out;
-  }
+        .animate-pulse {
+          animation: pulse-subtle 2s infinite ease-in-out;
+        }
 
-  .animate-pulse-subtle {
-    animation: pulse-subtle 2s infinite ease-in-out;
-  }
-`}</style>
-
+        .animate-pulse-subtle {
+          animation: pulse-subtle 2s infinite ease-in-out;
+        }
+      `}</style>
     </div>
   )
 }
