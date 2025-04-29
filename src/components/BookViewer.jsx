@@ -41,6 +41,7 @@ function BookViewer() {
   
           // Now replace http with https
           const fixedHtmlUrl = rawHtmlUrl ? rawHtmlUrl.replace("http://", "https://") : "";
+
   
           setHtmlUrl(fixedHtmlUrl);
           setPdfUrl(book.formats["application/pdf"] || "");
