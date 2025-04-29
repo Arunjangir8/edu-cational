@@ -27,7 +27,9 @@ function BookViewer() {
           console.log(secureHtmlLink)
 
           setHtmlUrl(secureHtmlLink)
-          setPdfUrl(book.formats["application/pdf"].replace("http://", "https://") || "")
+          const main = book.formats["application/pdf"]
+          const mainlink = main ? main.replace("http://", "https://") : ""
+          setPdfUrl(mainlink)
           setBookTitle(book.title || "Book")
 
           if (!secureHtmlLink) setLoading(false)
