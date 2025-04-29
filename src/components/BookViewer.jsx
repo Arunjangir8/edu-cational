@@ -38,16 +38,32 @@ function BookViewer() {
             }
           }
   
-          // Now replace http with https
-          const fixedHtmlUrl = rawHtmlUrl ? rawHtmlUrl.replace("http://", "https://") : "";
+          if (!rawHtmlUrl) {
+            setError(true);
+            setLoading(false);
+            return;
+          }
   
-          setHtmlUrl(fixedHtmlUrl);
+          const httpsUrl = rawHtmlUrl.replace("http://", "https://");
+  
+          // Now check if https URL actually works
+          try {
+            const checkRes = await fetch(httpsUrl, { method: "HEAD" });
+            if (checkRes.ok) {
+              setHtmlUrl(httpsUrl);
+            } else {
+              console.warn("HTTPS version not available, fallback needed.");
+              setHtmlUrl(""); // Clear iframe
+              window.location.href = rawHtmlUrl; // Redirect to original HTTP
+            }
+          } catch (error) {
+            console.warn("HTTPS version failed, fallback needed.",error);
+            setHtmlUrl(""); // Clear iframe
+            window.location.href = rawHtmlUrl; // Redirect to original HTTP
+          }
+  
           setPdfUrl(book.formats["application/pdf"] || "");
           setBookTitle(book.title || "Book");
-  
-          if (!fixedHtmlUrl) {
-            setLoading(false);
-          }
         } else {
           setError(true);
           setLoading(false);
@@ -56,12 +72,11 @@ function BookViewer() {
         console.error("Error fetching book:", error);
         setError(true);
         setLoading(false);
-         
       }
     };
   
     fetchBook();
-  }, [id, htmlUrl]);
+  }, [id]);
   
   const handleIframeLoad = () => {
     setLoading(false);
